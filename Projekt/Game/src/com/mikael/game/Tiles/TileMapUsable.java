@@ -28,17 +28,18 @@ public class TileMapUsable extends TileMap{
         String[] block = data.split(",");
         for(int i = 0; i < (width * height); i++) {
             int temp = Integer.parseInt(block[i].replaceAll("\\s+",""));
-            if(temp != 0) {
-                if(temp == 12) {
-                    usableBlock[i] = new DoorBlock(sprite.getSprite( (int)(temp - 1) % 7, (int)(temp - 1) / 7),
-                            new Vector2f((int)(i % width) * blockWidth, (int)(i / height) * blockHeight),
-                            blockWidth, blockHeight);
-                } else {
-                    usableBlock[i] = new UsableBlock(sprite.getSprite((int) (temp - 1) % 7, (int) (temp - 1) / 7),
-                            new Vector2f((int) (i % width) * blockWidth, (int) (i / height) * blockHeight),
-                            blockWidth, blockHeight);
-                }
-            }
+            System.out.println(temp);
+            // if(temp != 0) {
+            //     if(temp == 12) {
+            //         usableBlock[i] = new DoorBlock(sprite.getSprite((int) (temp - 1) % 40, (int) (temp - 1) / 36),
+            //                 new Vector2f((int)(i % width) * blockWidth, (int)(i / height) * blockHeight),
+            //                 blockWidth, blockHeight);
+            //     } else {
+            //         usableBlock[i] = new UsableBlock(sprite.getSprite((int) (temp - 1) % 40, (int) (temp - 1) / 36),
+            //                 new Vector2f((int) (i % width) * blockWidth, (int) (i / height) * blockHeight),
+            //                 blockWidth, blockHeight);
+            //     }
+            // }
         }
     }
 
