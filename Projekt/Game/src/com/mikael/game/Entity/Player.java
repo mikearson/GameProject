@@ -18,8 +18,6 @@ public class Player extends Entity {
         acc = 1.3f;
         deacc = 0.3f;
         maxSpeed = 1.5f;
-        upAcc = 4f;
-        upMaxSpeed = 2f;
         bounds.setWidth(40);
         bounds.setHeight(-40);
         bounds.setXOffset(20);
@@ -32,102 +30,75 @@ public class Player extends Entity {
         // if(!roofCollision) {
         // if (!up && yCol) {
         if (right) {
-            dx += acc; // accelerate
-            if (dx > maxSpeed) { // if acceleration is higher than chosen maxspeed set dx to maxspeed.
+            dx += acc;
+            if (dx > maxSpeed) {
                 dx = maxSpeed;
-
             }
+
         } else {
             if (dx > 0) {
                 dx -= deacc;
-                if (dx < 0) { // if deaccelaretion goes to less than 0 set dx to 0.
+                if (dx < 0)
                     dx = 0;
-                }
             }
         }
+
         if (left) {
-            dx -= acc; // -accelerate
-            if (dx < -maxSpeed) { // if acceleration is higher than chosen (-)maxspeed set dx to (-)maxspeed .
+            dx -= acc;
+            if (dx < -maxSpeed)
                 dx = -maxSpeed;
-            }
         } else {
             if (dx < 0) {
                 dx += deacc;
-                if (dx > 0) {
+                if (dx > 0)
                     dx = 0;
-                }
             }
         }
 
-        if (up) {
-            dy = -maxSpeed; // accelerate
-            // if (dy < -maxSpeed) { // if acceleration is higher than chosen maxspeed set dx to maxspeed.
-            //     dy = -maxSpeed;
-
-            // }
-        } 
-        // else {
-        //     if (dy < 0) {
-        //         dy += deacc;
-        //         if (dy > 0) { // if deaccelaretion goes to less than 0 set dx to 0.
-        //             dy = 0;
-        //         }
-        //     }
-        // }
         if (down) {
             dy += acc;
             if (dy > maxSpeed) {
                 dy = maxSpeed;
             }
         } else {
-            if (dy > 0)
+            if (dy > 0) {
                 dy -= deacc;
-            if (dy < 0)
-                dy = 0;
+                if (dy < 0)
+                    dy = 0;
+            }
         }
 
-        // } else {
-        // if (right && dx < maxSpeed / 4) {
-        // dx += acc / 4; //accelerate
-        // if (dx > maxSpeed) { //if acceleration is higher than chosen maxspeed set dx
-        // to maxspeed.
-        // dx = maxSpeed;
+        if (up) {
+            dy -= acc;
+            if (dy < -maxSpeed)
+                dy = -maxSpeed;
+        } else {
+            if (dy < 0) {
+                dy += deacc;
+                if (dy > 0)
+                    dy = 0;
+            }
+        }
 
-        // }
-        // }
-
-        // if (left && dx > -maxSpeed / 4) {
-        // dx -= acc / 4; //-accelerate
-        // if (dx < -maxSpeed) { //if acceleration is higher than chosen (-)maxspeed set
-        // dx to (-)maxspeed .
-        // dx = -maxSpeed;
-        // }
-        // }
-        // }
-        // if (!vine && !doorCol) {
-        // if (up && yCol) {
-        // dy = -upMaxSpeed;
-        // }
-        // }
-        // } else {
-        // if(dy < 0) {
-        // dy = 0;
-        // }
-        // roofCollision = false;
-        // }
-        // if(doorCol) {
-        // if(up) {
-        // resetPlayer();
-        // doorCol = false;
-        // }
-        // }
-        // if(vineCol) {
-        // if(up) {
-        // dy = -1.5f;
-        // }
-        // }
-
-        // dy += fallAcc;
+        /*
+         * Tidigare skit
+         * 
+         * // } else { // if (right && dx < maxSpeed / 4) { // dx += acc / 4;
+         * //accelerate // if (dx > maxSpeed) { //if acceleration is higher than chosen
+         * maxspeed set dx // to maxspeed. // dx = maxSpeed;
+         * 
+         * // } // }
+         * 
+         * // if (left && dx > -maxSpeed / 4) { // dx -= acc / 4; //-accelerate // if
+         * (dx < -maxSpeed) { //if acceleration is higher than chosen (-)maxspeed set //
+         * dx to (-)maxspeed . // dx = -maxSpeed; // } // } // } // if (!vine &&
+         * !doorCol) { // if (up && yCol) { // dy = -upMaxSpeed; // } // } // } else {
+         * // if(dy < 0) { // dy = 0; // } // roofCollision = false; // } // if(doorCol)
+         * { // if(up) { // resetPlayer(); // doorCol = false; // } // } // if(vineCol)
+         * { // if(up) { // dy = -1.5f; // } // }
+         * 
+         * // dy += fallAcc;
+         */
     }
 
     public void update() {
@@ -167,6 +138,7 @@ public class Player extends Entity {
         // animationWait = 0;
         // }
         // }
+
     }
 
     private void resetPlayer() {
