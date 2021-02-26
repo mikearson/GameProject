@@ -2,7 +2,7 @@ package com.mikael.game;
 
 import javax.swing.JFrame;
 
-public class Window extends  JFrame {
+public class Window extends JFrame {
 
     public Window() {
         setTitle("Projekt Spel");

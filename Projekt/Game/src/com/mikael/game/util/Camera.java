@@ -1,6 +1,5 @@
 package com.mikael.game.util;
 
-import com.mikael.game.Entity.Entity;
 import com.mikael.game.Entity.Player;
 import com.mikael.game.GamePanel;
 import com.mikael.game.States.PlayState;
