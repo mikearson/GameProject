@@ -31,7 +31,7 @@ public class TileMapBackground extends TileMap{
         for(int i = 0;i < (width * height);i++) {
             int temp = Integer.parseInt(block[i].replaceAll("\\s+", ""));
             if(temp != 0) {
-                blocks[i] = new BackgroundBlock(sprite.getSprite((int) ((temp - 1) % 7), (int) ((temp - 1)  / 7) ),
+                blocks[i] = new BackgroundBlock(sprite.getSprite((int) ((temp - 1) % 40), (int) ((temp - 1)  / 36) ),
                         new Vector2f((int) (i % width) * blockWidth, (int) (i / height) * blockHeight),
                         blockWidth, blockHeight);
             }

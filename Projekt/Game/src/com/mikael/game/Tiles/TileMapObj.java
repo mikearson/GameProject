@@ -32,12 +32,12 @@ public class TileMapObj extends TileMap {
             int temp = Integer.parseInt(block[i].replaceAll("\\s+",""));
             if (temp != 0) {
                 if(temp == 41){
-                    ObjBlock[i] = new WaterBlock(sprite.getSprite((int) (temp - 1) % 7, (int) (temp -1) / 7),
+                    ObjBlock[i] = new WaterBlock(sprite.getSprite((int) (temp - 1) % 40, (int) (temp -1) / 36),
                             new Vector2f((int) (i % width) * blockWidth,(int) (i / height) * blockHeight),
                             blockWidth, blockHeight);
                 } else {
                     ObjBlock[i] = new ObjBlock(
-                            sprite.getSprite((int) (temp - 1) % 7, (int) (temp - 1) / 7),
+                            sprite.getSprite((int) (temp - 1) % 40, (int) (temp - 1) / 36),
                             new Vector2f((int) (i % width) * blockWidth, (int) (i / height) * blockHeight),
                             blockWidth, blockHeight);
                 }

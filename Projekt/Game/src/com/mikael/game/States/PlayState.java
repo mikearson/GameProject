@@ -24,13 +24,12 @@ public class PlayState extends GameState {
         super(gameStateManager);
 
         map = new Vector2f();
-
+        System.out.println(map.x + " " + map.y);
         Vector2f.setWorldVar(map.x, map.y);
 
         cam = new Camera(new AABB(new Vector2f(0,0), GamePanel.width + 64, GamePanel.height + 64));
-        tileManager = new TileManager("com/mikael/game/States/Version1337.xml", cam);
-
-        player = new Player(new Sprite("com/mikael/game/Entity/linkFormatted.png", 32, 32), new Vector2f(576 ,5800), 80); //576
+        tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
+        player = new Player(new Sprite("com/mikael/game/Entity/linkFormatted.png", 32, 32), new Vector2f(0, 0), 80); //576
         cam.target(player);
     }
 

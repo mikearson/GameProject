@@ -36,7 +36,7 @@ public class TileManager {
         int layers = 0;
         Sprite sprite;
 
-        String[] data = new String[4];
+        String[] data = new String[3];
 
 
         try {
@@ -49,37 +49,35 @@ public class TileManager {
             Node node; // = list.item(0);
             Element eElement;// = (Element) node;
 
-            sprite = new Sprite("com/mikael/game/States/nature-paltformer-tileset-16x16.png", 16, 16);
-
+            sprite = new Sprite("com/mikael/game/States/Overworld.png", 16, 16);
 
             layers = list.getLength();
-
-
-
 
             for(int i = 0; i <= layers; i++) {
                 node = list.item(i);
                 eElement = (Element) node;
-
-                if (i <= 0) {
+                if (i <= 0 || i == 2) {
                     width = Integer.parseInt((eElement.getAttribute("width")));
                     height = Integer.parseInt(eElement.getAttribute("height"));
                 }
-                data[i] = eElement.getElementsByTagName("data").item(0).getTextContent();
-
-                if(i == 0 || i == 1) { // Background
-                    tileManager.add(new TileMapBackground(data[i], sprite, width, height, blockWidth, blockHeight));
-                } else if(i == 2) { //object
-                    tileManager.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight));
-                } else if(i == 3) { // usable
-                    tileManager.add(new TileMapUsable(data[i], sprite, width, height, blockWidth, blockHeight));
+                if(eElement != null) {                    
+                    data[i] = eElement.getElementsByTagName("data").item(0).getTextContent();
                 }
-
+                
+                if(i == 0) { // Background
+                    tileManager.add(new TileMapBackground(data[i], sprite, width, height, blockWidth, blockHeight));
+                } else if(i == 1) { //object
+                    tileManager.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight));
+                // } else if(i == 2) { // usable
+                //     tileManager.add(new TileMapUsable(data[i], sprite, width, height, blockWidth, blockHeight));
+                }
+                System.out.println("hej");
               camera.setLimit(width * blockWidth + 64, height * blockHeight);
             }
 
 
         } catch (Exception e) {
+            System.out.println(e);
             System.out.println("CAN NOT READ TILEMAP");
         }
 
