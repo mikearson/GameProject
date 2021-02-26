@@ -28,6 +28,7 @@ public abstract class Entity {
     protected boolean upRight = false;
     protected boolean upLeft = false;
     protected boolean up = false;
+    protected boolean down = false;
 
     protected boolean roofCollision = false;
     protected boolean dead = false;

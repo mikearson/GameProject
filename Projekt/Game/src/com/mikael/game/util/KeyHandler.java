@@ -42,6 +42,7 @@ public class KeyHandler implements KeyListener {
     public Key right = new Key();
     public Key left = new Key();
     public Key up = new Key();
+    public Key down = new Key();
 
     public KeyHandler(GamePanel game) {
         game.addKeyListener(this);
@@ -51,6 +52,7 @@ public class KeyHandler implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_D) right.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_W) up.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_S) down.toggle(pressed);
 
     }
 
