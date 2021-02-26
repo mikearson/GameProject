@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
- <editorsettings>
-  <export format="json"/>
- </editorsettings>
- <tileset firstgid="1" source="../Tilesets/Zelda Like/gfx/Overworld.tsx"/>
  <layer id="2" name="Ground" width="64" height="64">
   <data encoding="csv">
 366,366,366,366,366,1,366,366,366,366,366,366,366,366,283,366,285,366,366,366,366,1,1,366,1,366,366,213,1,1,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,366,
