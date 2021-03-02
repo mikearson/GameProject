@@ -10,18 +10,17 @@ import com.mikael.game.util.Vector2f;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
 public abstract class Entity {
     protected final int RIGHT = 0;
     protected final int LEFT = 1;
-    protected final int DEAD = 2;
+    protected final int DOWN = 2;
+    protected final int UP = 3;
     protected int currentAnimation;
 
     protected Animation animation;
     protected Sprite sprite;
     public Vector2f pos;
     protected int size;
-
 
     protected boolean right = false;
     protected boolean left = false;
@@ -39,8 +38,6 @@ public abstract class Entity {
     public boolean yCol = false;
     public boolean doorCol = false;
     public boolean vineCol = false;
-
-
 
     public float dx;
     public float dy;
@@ -76,18 +73,30 @@ public abstract class Entity {
 
     public AABB
 
-    getBounds() {return bounds;}
+            getBounds() {
+        return bounds;
+    }
 
-    public float getDX() {return dx;}
-    public float getDY() {return dy;}
-    public void setDeath(boolean d) {dead = d;}
+    public float getDX() {
+        return dx;
+    }
+
+    public float getDY() {
+        return dy;
+    }
+
+    public void setDeath(boolean d) {
+        dead = d;
+    }
 
     public void roofCollision(Boolean roofCollision) {
         this.roofCollision = roofCollision;
     }
+
     public void doorCollision(Boolean doorCollision) {
         this.door = doorCollision;
     }
+
     public void vineCollision(Boolean vineCollision) {
         this.vine = vineCollision;
     }
@@ -100,33 +109,25 @@ public abstract class Entity {
 
     public void animate() {
 
-            if (right) {
-                if (currentAnimation != RIGHT || animation.getDelay() == -1) {
-                    setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
-                }
-            } else if (left) {
-                if (currentAnimation != LEFT || animation.getDelay() == -1) {
-                    setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
-                }
-            } else if (upRight) {  //FEL
-                if (currentAnimation != RIGHT || animation.getDelay() == -1) {
-                    setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
-                }
-            } else if (upLeft) { // FEL
-                if (currentAnimation != LEFT || animation.getDelay() == -1) {
-                    setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
-                }
-            } else if (up) { //FEL
-                if (currentAnimation != RIGHT || animation.getDelay() == -1) {
-                    setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
-                }
-            } else if(dead) {
-                if(currentAnimation != DEAD || animation.getDelay()== -1) {
-                    setAnimation(DEAD, sprite.getSpriteArray(DEAD), 15);
-                }
-            } else{
-                setAnimation(currentAnimation, sprite.getSpriteArray(currentAnimation), -1);
+        if (right) {
+            if (currentAnimation != RIGHT || animation.getDelay() == -1) {
+                setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
             }
+        } else if (left) {
+            if (currentAnimation != LEFT || animation.getDelay() == -1) {
+                setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
+            }
+        } else if (up) {
+            if (currentAnimation != UP || animation.getDelay() == -1) {
+                setAnimation(UP, sprite.getSpriteArray(UP), 5);
+            }
+        } else if (down) {
+            if (currentAnimation != DOWN || animation.getDelay() == -1) {
+                setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
+            }
+        } else {
+            setAnimation(currentAnimation, sprite.getSpriteArray(currentAnimation), -1);
+        }
 
     }
 
