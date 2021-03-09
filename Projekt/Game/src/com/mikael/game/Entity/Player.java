@@ -23,7 +23,7 @@ public class Player extends Entity {
         bounds.setXOffset(20);
         bounds.setYOffset(60);
 
-        hitPoints = 50;
+        hitPoints = 100;
 
     }
 

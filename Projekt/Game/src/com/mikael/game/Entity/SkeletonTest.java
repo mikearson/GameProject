@@ -13,9 +13,9 @@ public class SkeletonTest extends MonsterEntity {
     public SkeletonTest(Sprite sprite, Vector2f pos, int size) {
         super(sprite, pos, size);
 
-        acc = 1.3f;
+        acc = 1.0f;
         deacc = 0.3f;
-        maxSpeed = 1.5f;
+        maxSpeed = 1.2f;
         bounds.setWidth(40);
         bounds.setHeight(-40);
         bounds.setXOffset(20);
