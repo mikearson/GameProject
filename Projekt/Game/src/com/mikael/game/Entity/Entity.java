@@ -24,8 +24,6 @@ public abstract class Entity {
 
     protected boolean right = false;
     protected boolean left = false;
-    protected boolean upRight = false;
-    protected boolean upLeft = false;
     protected boolean up = false;
     protected boolean down = false;
 
@@ -68,12 +66,9 @@ public abstract class Entity {
         setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
 
         tileCollision = new TileCollision(this);
-        usableTile = new TileCollisionUsable(this);
     }
 
-    public AABB
-
-            getBounds() {
+    public AABB getBounds() {
         return bounds;
     }
 
@@ -125,6 +120,8 @@ public abstract class Entity {
             if (currentAnimation != DOWN || animation.getDelay() == -1) {
                 setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
             }
+        } else if (dead) {
+            // death animation here
         } else {
             setAnimation(currentAnimation, sprite.getSpriteArray(currentAnimation), -1);
         }
