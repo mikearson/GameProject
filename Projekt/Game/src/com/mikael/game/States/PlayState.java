@@ -28,11 +28,11 @@ public class PlayState extends GameState {
         System.out.println(map.x + " " + map.y);
         Vector2f.setWorldVar(map.x, map.y);
         player = new Player(new Sprite("com/mikael/game/Entity/linkFormatted.png", 32, 32), new Vector2f(0, 0), 80); // 576
-        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints);
         cam = new Camera(new AABB(new Vector2f(0, 0), GamePanel.width + 64, GamePanel.height + 64));
         tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
         skeleton = new SkeletonTest(new Sprite("com/mikael/game/Entity/skellyPrototype.png", 32, 32),
                 new Vector2f(0, 3), 80); // 576
+        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints);
         cam.target(player);
     }
 
