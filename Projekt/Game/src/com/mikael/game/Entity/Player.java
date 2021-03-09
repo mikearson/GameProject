@@ -23,6 +23,8 @@ public class Player extends Entity {
         bounds.setXOffset(20);
         bounds.setYOffset(60);
 
+        health = 100;
+
     }
 
     private void move() {

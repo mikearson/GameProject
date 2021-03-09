@@ -7,7 +7,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
@@ -19,7 +18,6 @@ public class TileManager {
     public Camera camera;
     public static ArrayList<TileMap> tileManager;
 
-
     public TileManager(String path, Camera camera) {
         tileManager = new ArrayList<TileMap>();
 
@@ -28,7 +26,7 @@ public class TileManager {
 
     private void addTileMap(String path, int blockWidth, int blockHeight, Camera camera) {
         this.camera = camera;
-       // String imagePath;
+        // String imagePath;
         String temp;
 
         int width = 0;
@@ -37,7 +35,6 @@ public class TileManager {
         Sprite sprite;
 
         String[] data = new String[3];
-
 
         try {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -53,28 +50,27 @@ public class TileManager {
 
             layers = list.getLength();
 
-            for(int i = 0; i <= layers; i++) {
+            for (int i = 0; i <= layers; i++) {
                 node = list.item(i);
                 eElement = (Element) node;
                 if (i <= 0 || i == 2) {
-                    width = Integer.parseInt((eElement.getAttribute("width")));
+                    width = Integer.parseInt(eElement.getAttribute("width"));
                     height = Integer.parseInt(eElement.getAttribute("height"));
                 }
-                if(eElement != null) {                    
+                if (eElement != null) {
                     data[i] = eElement.getElementsByTagName("data").item(0).getTextContent();
                 }
-                
-                if(i == 0) { // Background
-                    tileManager.add(new TileMapBackground(data[i], sprite, width, height, blockWidth, blockHeight));
-                } else if(i == 1) { //object
-                    tileManager.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight));
-                // } else if(i == 2) { // usable
-                //     tileManager.add(new TileMapUsable(data[i], sprite, width, height, blockWidth, blockHeight));
-                }
-                System.out.println("hej");
-              camera.setLimit(width * blockWidth + 64, height * blockHeight);
-            }
 
+                if (i == 0) { // Background
+                    tileManager.add(new TileMapBackground(data[i], sprite, width, height, blockWidth, blockHeight));
+                } else if (i == 1) { // object
+                    tileManager.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight));
+                    // } else if(i == 2) { // usable
+                    // tileManager.add(new TileMapUsable(data[i], sprite, width, height, blockWidth,
+                    // blockHeight));
+                }
+                camera.setLimit(width * blockWidth + 64, height * blockHeight);
+            }
 
         } catch (Exception e) {
             System.out.println(e);
@@ -84,9 +80,10 @@ public class TileManager {
     }
 
     public void render(Graphics2D g) {
-        if(camera == null) return;
+        if (camera == null)
+            return;
 
-        for(int i = 0; i < tileManager.size(); i++) {
+        for (int i = 0; i < tileManager.size(); i++) {
             tileManager.get(i).render(g, camera.getBounds());
         }
     }
