@@ -8,7 +8,7 @@ import com.mikael.game.util.AABB;
 import com.mikael.game.util.Camera;
 import com.mikael.game.util.KeyHandler;
 import com.mikael.game.util.Vector2f;
-import com.mikael.game.util.UI;
+import com.mikael.game.GUI.UIManager;
 
 import java.awt.*;
 
@@ -19,7 +19,7 @@ public class PlayState extends GameState {
     public static Vector2f map;
     private TileManager tileManager;
     private Camera cam;
-    private UI ui;
+    private UIManager ui;
 
     public PlayState(GameStateManager gameStateManager) {
         super(gameStateManager);
@@ -27,13 +27,12 @@ public class PlayState extends GameState {
         map = new Vector2f();
         System.out.println(map.x + " " + map.y);
         Vector2f.setWorldVar(map.x, map.y);
-
-        ui = new UI(GamePanel.width, GamePanel.height);
+        player = new Player(new Sprite("com/mikael/game/Entity/linkFormatted.png", 32, 32), new Vector2f(0, 0), 80); // 576
+        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints);
         cam = new Camera(new AABB(new Vector2f(0, 0), GamePanel.width + 64, GamePanel.height + 64));
         tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
         skeleton = new SkeletonTest(new Sprite("com/mikael/game/Entity/skellyPrototype.png", 32, 32),
                 new Vector2f(0, 3), 80); // 576
-        player = new Player(new Sprite("com/mikael/game/Entity/linkFormatted.png", 32, 32), new Vector2f(0, 0), 80); // 576
         cam.target(player);
     }
 
@@ -53,6 +52,6 @@ public class PlayState extends GameState {
         player.render(g);
         skeleton.render(g);
         cam.render(g);
-        ui.render(g, GamePanel.width, GamePanel.height);
+        ui.render(g);
     }
 }
