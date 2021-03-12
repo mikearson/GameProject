@@ -27,7 +27,7 @@ public abstract class Entity {
     protected boolean up = false;
     protected boolean down = false;
 
-    public int hitPoints;
+    public HPManager hitPoints;
 
     protected boolean roofCollision = false;
     protected boolean dead = false;

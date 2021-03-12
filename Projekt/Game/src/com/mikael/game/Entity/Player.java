@@ -23,8 +23,7 @@ public class Player extends Entity {
         bounds.setXOffset(20);
         bounds.setYOffset(60);
 
-        hitPoints = 100;
-
+        hitPoints = new HPManager(100);
     }
 
     private void move() {

@@ -34,7 +34,7 @@ public class PlayState extends GameState {
         tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
         skeleton = new SkeletonTest(new Sprite("com/mikael/game/Entity/skellyPrototype.png", 32, 32),
                 new Vector2f(300, 300), 80); // 576
-        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints);
+        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints.getHitPoints());
         cam.target(player);
     }
 

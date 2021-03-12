@@ -1,8 +1,12 @@
 package com.mikael.game.Entity.MonsterEntity.MonsterMoves;
 
+import com.mikael.game.Entity.Attack;
+import com.mikael.game.States.PlayState;
 import com.mikael.game.util.Vector2f;
 
-public class Lounge extends MonsterMoveManager {
+public class Lounge extends Attack {
+
+    public Attack attack;
 
     public Lounge() {
         super();
@@ -14,22 +18,22 @@ public class Lounge extends MonsterMoveManager {
         update();
 
         if (count < 50) {
-            if (playerPos.x - monsterEntityPos.x >= loungeThresholdRange
-                    && !(playerPos.x - monsterEntityPos.x <= -loungeThresholdRange)) {
+            if (PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange
+                    && !(PlayState.player.pos.x - monsterEntityPos.x <= -loungeThresholdRange)) {
 
                 return true;
 
-            } else if (playerPos.x - monsterEntityPos.x >= -loungeThresholdRange
-                    && !(playerPos.x - monsterEntityPos.x <= loungeThresholdRange)) {
+            } else if (PlayState.player.pos.x - monsterEntityPos.x >= -loungeThresholdRange
+                    && !(PlayState.player.pos.x - monsterEntityPos.x <= loungeThresholdRange)) {
 
                 return true;
-            } else if (playerPos.y - monsterEntityPos.y >= loungeThresholdRange
-                    && !(playerPos.y - monsterEntityPos.y <= -loungeThresholdRange)) {
+            } else if (PlayState.player.pos.y - monsterEntityPos.y >= loungeThresholdRange
+                    && !(PlayState.player.pos.y - monsterEntityPos.y <= -loungeThresholdRange)) {
 
                 return true;
 
-            } else if (playerPos.y - monsterEntityPos.y >= -loungeThresholdRange
-                    && !(playerPos.y - monsterEntityPos.y <= loungeThresholdRange)) {
+            } else if (PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange
+                    && !(PlayState.player.pos.y - monsterEntityPos.y <= loungeThresholdRange)) {
 
                 return true;
             }
