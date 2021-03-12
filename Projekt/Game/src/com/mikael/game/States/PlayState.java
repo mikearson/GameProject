@@ -1,6 +1,8 @@
 package com.mikael.game.States;
 
-import com.mikael.game.Entity.*;
+import com.mikael.game.Entity.Player;
+import com.mikael.game.Entity.MonsterEntity.MonsterEntity;
+import com.mikael.game.Entity.MonsterEntity.Monsters.SkeletonTest;
 import com.mikael.game.GamePanel;
 import com.mikael.game.Graphics.Sprite;
 import com.mikael.game.Tiles.TileManager;
@@ -31,7 +33,7 @@ public class PlayState extends GameState {
         cam = new Camera(new AABB(new Vector2f(0, 0), GamePanel.width + 64, GamePanel.height + 64));
         tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
         skeleton = new SkeletonTest(new Sprite("com/mikael/game/Entity/skellyPrototype.png", 32, 32),
-                new Vector2f(0, 3), 80); // 576
+                new Vector2f(300, 300), 80); // 576
         ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints);
         cam.target(player);
     }

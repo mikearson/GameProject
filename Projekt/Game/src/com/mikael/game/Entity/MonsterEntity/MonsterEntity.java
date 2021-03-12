@@ -1,5 +1,7 @@
-package com.mikael.game.Entity;
+package com.mikael.game.Entity.MonsterEntity;
 
+import com.mikael.game.Entity.Entity;
+import com.mikael.game.Entity.MonsterEntity.MonsterMoves.MonsterMoveManager;
 import com.mikael.game.Graphics.Sprite;
 import com.mikael.game.util.Vector2f;
 import java.awt.*;
