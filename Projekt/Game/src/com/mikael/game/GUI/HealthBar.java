@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.Color;
 
+import com.mikael.game.States.PlayState;
 import com.mikael.game.Graphics.Sprite;
 
 public class HealthBar extends UIRender {
@@ -12,12 +13,10 @@ public class HealthBar extends UIRender {
     private Sprite sprite;
     private int hitPoints;
 
-    public HealthBar(int width, int height, int hitPoints) {
+    public HealthBar(int width, int height) {
 
         super(width, height);
-        this.hitPoints = hitPoints;
         sprite = new Sprite("com/mikael/game/GUI/Assets/HealthBar_Prototype.png", width, height);
-
     }
 
     public void healthBarFiller(Graphics g, int hitPoints) {
@@ -28,6 +27,7 @@ public class HealthBar extends UIRender {
     }
 
     public void render(Graphics2D g) {
+        hitPoints = PlayState.player.hitPoints.getHitPoints();
         super.render(g, sprite);
         healthBarFiller(g, hitPoints);
     }

@@ -1,23 +1,23 @@
 package com.mikael.game.Entity.MonsterEntity.MonsterMoves;
 
-import com.mikael.game.Entity.Attack;
 import com.mikael.game.States.PlayState;
 import com.mikael.game.util.Vector2f;
 
-public class Lounge extends Attack {
+public class Lounge extends MonsterMoveManager {
 
-    public Attack attack;
+    private int loungeThresholdRange;
 
-    public Lounge() {
-        super();
+    public Lounge(Vector2f monsterEntityPos, int loungeThresholdRange, int cooldown) {
+
+        super(monsterEntityPos, cooldown);
+        this.loungeThresholdRange = loungeThresholdRange;
     }
 
-    public boolean LoungeMove(Vector2f monsterEntityPos, int loungeThresholdRange, int cooldown) {
+    public boolean LoungeMove() {
 
-        delay = cooldown;
-        update();
+        cooldownCounter.update();
 
-        if (count < 50) {
+        if (cooldownCounter.getReset() < 50) {
             if (PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange
                     && !(PlayState.player.pos.x - monsterEntityPos.x <= -loungeThresholdRange)) {
 

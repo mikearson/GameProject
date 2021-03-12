@@ -6,16 +6,14 @@ public class UIManager {
 
     int width;
     int height;
-    int hitPoints;
 
     private HealthBar healthBar;
 
-    public UIManager(int width, int height, int hitPoints) {
+    public UIManager(int width, int height) {
         this.width = width;
         this.height = height;
-        this.hitPoints = hitPoints;
 
-        healthBar = new HealthBar(width, height, hitPoints);
+        healthBar = new HealthBar(width, height);
     }
 
     public void render(Graphics2D g) {

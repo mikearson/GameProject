@@ -1,19 +1,27 @@
 package com.mikael.game.Entity.MonsterEntity.Monsters;
 
+import com.mikael.game.States.PlayState;
+import com.mikael.game.Entity.HPManager;
 import com.mikael.game.Entity.MonsterEntity.MonsterEntity;
 import com.mikael.game.Entity.MonsterEntity.MonsterMoves.Lounge;
 import com.mikael.game.Graphics.Sprite;
+import com.mikael.game.util.CooldownCounter;
 import com.mikael.game.util.Vector2f;
 import java.awt.*;
 
 public class SkeletonTest extends MonsterEntity {
 
     int animationWait = 0;
+
+    private int startingHitPoints;
     private int loungeThresholdRange = 80;
     private int loungeCooldown = 300;
+    public int loungeDamage = 30;
     private boolean loungeRange = false;
 
     private Lounge lounge;
+    public HPManager hitPoints;
+    public CooldownCounter loungeDamageCooldown;
 
     public SkeletonTest(Sprite sprite, Vector2f pos, int size) {
         super(sprite, pos, size);
@@ -26,12 +34,14 @@ public class SkeletonTest extends MonsterEntity {
         bounds.setXOffset(20);
         bounds.setYOffset(60);
 
-        lounge = new Lounge();
+        hitPoints = new HPManager(startingHitPoints);
+        lounge = new Lounge(this.pos, loungeThresholdRange, loungeCooldown);
+        loungeDamageCooldown = new CooldownCounter(loungeCooldown);
 
     }
 
     private void attack() {
-        loungeRange = lounge.LoungeMove(this.pos, loungeThresholdRange, loungeCooldown);
+        loungeRange = lounge.LoungeMove();
 
         if (loungeRange) {
             acc = 5f;
@@ -42,7 +52,14 @@ public class SkeletonTest extends MonsterEntity {
             deacc = 0.3f;
             maxSpeed = 0.6f;
         }
-        // System.out.println(maxSpeed);
+        if (loungeDamageCooldown.getReset() == 0) {
+            if (lounge.didItHit(this)) {
+                PlayState.player.hitPoints.setHitPoints(-loungeDamage);
+                loungeDamageCooldown.update();
+            }
+        } else {
+            loungeDamageCooldown.update();
+        }
     }
 
     public void update() {

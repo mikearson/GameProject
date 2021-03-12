@@ -34,14 +34,14 @@ public class PlayState extends GameState {
         tileManager = new TileManager("com/mikael/game/States/MapSketch1-02-26.xml", cam);
         skeleton = new SkeletonTest(new Sprite("com/mikael/game/Entity/skellyPrototype.png", 32, 32),
                 new Vector2f(300, 300), 80); // 576
-        ui = new UIManager(GamePanel.width, GamePanel.height, player.hitPoints.getHitPoints());
+        ui = new UIManager(GamePanel.width, GamePanel.height);
         cam.target(player);
     }
 
     public void update() {
         Vector2f.setWorldVar(map.x, map.y);
         player.update();
-        skeleton.update();
+        // skeleton.update();
         cam.update();
     }
 
@@ -50,6 +50,7 @@ public class PlayState extends GameState {
     }
 
     public void render(Graphics2D g) {
+        System.out.println("da");
         tileManager.render(g);
         player.render(g);
         skeleton.render(g);
