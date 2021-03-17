@@ -9,7 +9,7 @@ import com.mikael.game.util.CooldownCounter;
 import com.mikael.game.util.Vector2f;
 import java.awt.*;
 
-public class SkeletonTest extends MonsterEntity {
+public class SkeletonTest extends MonsterEntity implements Monster { // implements attack, update, render
 
     int animationWait = 0;
 
@@ -17,6 +17,7 @@ public class SkeletonTest extends MonsterEntity {
     private int loungeThresholdRange = 80;
     private int loungeCooldown = 300;
     public int loungeDamage = 30;
+    private int loungeDuration = 50;
     private boolean loungeRange = false;
 
     private Lounge lounge;
@@ -35,12 +36,12 @@ public class SkeletonTest extends MonsterEntity {
         bounds.setYOffset(60);
 
         hitPoints = new HPManager(startingHitPoints);
-        lounge = new Lounge(this.pos, loungeThresholdRange, loungeCooldown);
+        lounge = new Lounge(this.pos, loungeThresholdRange, loungeCooldown, loungeDuration);
         loungeDamageCooldown = new CooldownCounter(loungeCooldown);
 
     }
 
-    private void attack() {
+    public void attack() {
         loungeRange = lounge.LoungeMove();
 
         if (loungeRange) {

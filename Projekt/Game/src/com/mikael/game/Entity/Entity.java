@@ -6,16 +6,18 @@ import com.mikael.game.util.AABB;
 import com.mikael.game.util.TileCollision;
 import com.mikael.game.util.TileCollisionUsable;
 import com.mikael.game.util.Vector2f;
+import com.mikael.game.util.Direction;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
-    protected final int RIGHT = 0;
-    protected final int LEFT = 1;
-    protected final int DOWN = 2;
-    protected final int UP = 3;
-    protected int currentAnimation;
+    // protected final int RIGHT = 0;
+    // protected final int LEFT = 1;
+    // protected final int DOWN = 2;
+    // protected final int UP = 3;
+    public Direction direction = Direction.RIGHT;
+    protected Direction currentAnimation;
 
     protected Animation animation;
     protected Sprite sprite;
@@ -65,7 +67,7 @@ public abstract class Entity {
         hitBounds.setXOffset(size / 2);
 
         animation = new Animation();
-        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
+        setAnimation(Direction.RIGHT, sprite.getSpriteArray(Direction.RIGHT), 10);
 
         tileCollision = new TileCollision(this);
     }
@@ -98,7 +100,7 @@ public abstract class Entity {
         this.vine = vineCollision;
     }
 
-    public void setAnimation(int i, BufferedImage[] frames, int delay) {
+    public void setAnimation(Direction i, BufferedImage[] frames, int delay) {
         currentAnimation = i;
         animation.setFrames(frames);
         animation.setDelay(delay);
@@ -107,20 +109,20 @@ public abstract class Entity {
     public void animate() {
 
         if (right) {
-            if (currentAnimation != RIGHT || animation.getDelay() == -1) {
-                setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
+            if (currentAnimation != Direction.RIGHT || animation.getDelay() == -1) {
+                setAnimation(Direction.RIGHT, sprite.getSpriteArray(Direction.RIGHT), 10);
             }
         } else if (left) {
-            if (currentAnimation != LEFT || animation.getDelay() == -1) {
-                setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
+            if (currentAnimation != Direction.LEFT || animation.getDelay() == -1) {
+                setAnimation(Direction.LEFT, sprite.getSpriteArray(Direction.LEFT), 10);
             }
         } else if (up) {
-            if (currentAnimation != UP || animation.getDelay() == -1) {
-                setAnimation(UP, sprite.getSpriteArray(UP), 5);
+            if (currentAnimation != Direction.UP || animation.getDelay() == -1) {
+                setAnimation(Direction.UP, sprite.getSpriteArray(Direction.UP), 10);
             }
         } else if (down) {
-            if (currentAnimation != DOWN || animation.getDelay() == -1) {
-                setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
+            if (currentAnimation != Direction.DOWN || animation.getDelay() == -1) {
+                setAnimation(Direction.DOWN, sprite.getSpriteArray(Direction.DOWN), 10);
             }
         } else if (dead) {
             // death animation here

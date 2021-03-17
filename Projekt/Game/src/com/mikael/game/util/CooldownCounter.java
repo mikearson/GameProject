@@ -24,4 +24,8 @@ public class CooldownCounter {
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
+
+    public int getCooldown() {
+        return cooldown;
+    }
 }

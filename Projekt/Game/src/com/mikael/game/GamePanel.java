@@ -11,9 +11,6 @@ import com.mikael.game.util.KeyHandler;
 
 public class GamePanel extends JPanel implements Runnable {
 
-
-
-
     public static int width;
     public static int height;
     public static int oldFrameCount;
@@ -21,15 +18,12 @@ public class GamePanel extends JPanel implements Runnable {
     private Thread thread;
     private Boolean running = false;
 
-
     private Graphics2D g;
     private BufferedImage image;
     private KeyHandler keyhandler;
     private GameStateManager gameStateManager;
 
-
     public GamePanel(int width, int height) {
-
 
         this.width = width;
         this.height = height;
@@ -40,14 +34,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void addNotify() {
-        //for input keyboard and mouse. check if thread is made and if its not its going to make one
+        // for input keyboard and mouse. check if thread is made and if its not its
+        // going to make one
         super.addNotify();
 
-        if(thread == null) {
+        if (thread == null) {
             thread = new Thread(this, "GameThread");
             thread.start();
         }
-
     }
 
     private void init() {
@@ -60,8 +54,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         gameStateManager = new GameStateManager();
     }
-
-
 
     public void run() {
         init();
@@ -81,17 +73,17 @@ public class GamePanel extends JPanel implements Runnable {
         int lastSecondTime = (int) (lastUpdateTime / 1_000_000_000);
         oldFrameCount = 0;
 
-        while(running) {
+        while (running) {
             double now = System.nanoTime();
             int updateCount = 0;
-            while(((now - lastUpdateTime ) > TBU) && (updateCount < MUBR)) {
+            while (((now - lastUpdateTime) > TBU) && (updateCount < MUBR)) {
                 update();
                 input(keyhandler);
                 lastUpdateTime += TBU;
                 updateCount++;
             }
 
-            if(now - lastUpdateTime > TBU){
+            if (now - lastUpdateTime > TBU) {
                 lastUpdateTime = now - TBU;
             }
 
@@ -104,8 +96,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             int thisSecond = (int) (lastUpdateTime / 1_000_000_000);
 
-            if(thisSecond > lastSecondTime) {
-                if(frameCount != oldFrameCount) {
+            if (thisSecond > lastSecondTime) {
+                if (frameCount != oldFrameCount) {
                     System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
                     oldFrameCount = frameCount;
                 }
@@ -113,12 +105,12 @@ public class GamePanel extends JPanel implements Runnable {
                 lastSecondTime = thisSecond;
             }
 
-            while(now - lastRenderTime < TIBR && now - lastUpdateTime < TBU) {
+            while (now - lastRenderTime < TIBR && now - lastUpdateTime < TBU) {
                 Thread.yield();
 
                 try {
                     Thread.sleep(1);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     System.out.println("ERROR: yielding thread");
                 }
                 now = System.nanoTime();
@@ -126,26 +118,26 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-   public void update() {
+    public void update() {
         gameStateManager.update();
-   }
+    }
 
-   public void input(KeyHandler key) {
+    public void input(KeyHandler key) {
         gameStateManager.input(key);
-   }
+    }
 
-   public void render() {
-        if(g != null) {
+    public void render() {
+        if (g != null) {
             g.setColor(Color.blue);
-            g.fillRect(0,0, width, height);
+            g.fillRect(0, 0, width, height);
             gameStateManager.render(g);
         }
 
-   }
+    }
 
-   public void draw() {
+    public void draw() {
         Graphics2D g2 = (Graphics2D) this.getGraphics();
         g2.drawImage(image, 0, 0, width, height, null);
         g2.dispose();
-   }
+    }
 }
