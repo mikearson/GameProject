@@ -57,7 +57,6 @@ public abstract class MonsterEntity extends Entity {
         if (PlayState.player.pos.y > this.pos.y + 40) {
 
             this.pos.y += acc;
-            down = true;
 
             if (dy > maxSpeed) {
                 dy = maxSpeed;
@@ -75,7 +74,6 @@ public abstract class MonsterEntity extends Entity {
         if (PlayState.player.pos.y < this.pos.y - 40) {
 
             this.pos.y -= acc;
-            up = true;
 
             if (dy < -maxSpeed) {
                 dy = -maxSpeed;
@@ -88,6 +86,7 @@ public abstract class MonsterEntity extends Entity {
                 }
             }
         }
+
     }
 
     public void update() {
