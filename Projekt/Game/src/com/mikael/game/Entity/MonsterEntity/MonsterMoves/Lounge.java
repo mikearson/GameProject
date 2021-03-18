@@ -10,6 +10,9 @@ public class Lounge extends MonsterMoveManager {
     private int loungeDuration;
     private int loungeCounter;
 
+    private boolean monsterWithinRangeX;
+    private boolean monsterWithinRangeY;
+
     public Lounge(Vector2f monsterEntityPos, int loungeThresholdRange, int cooldown, int loungeDuration) {
 
         super(monsterEntityPos, cooldown);
@@ -26,34 +29,29 @@ public class Lounge extends MonsterMoveManager {
             loungeCooldown();
         }
 
-        // MÅSTE FÅ IN RANGE
+        if ((PlayState.player.pos.x - monsterEntityPos.x <= loungeThresholdRange
+                && !(PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange))
+                || (PlayState.player.pos.x - monsterEntityPos.x >= -loungeThresholdRange
+                        && !(PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange))) {
 
-        // måste fixa N / W direction
+            monsterWithinRangeX = true;
+        } else {
+            monsterWithinRangeX = false;
+        }
 
-        if (loungeActive) {
+        if ((PlayState.player.pos.y - monsterEntityPos.y <= loungeThresholdRange
+                && !(PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange))
+                || (PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange
+                        && !(PlayState.player.pos.y - monsterEntityPos.y >= loungeThresholdRange))) {
 
-            if (PlayState.player.pos.x - monsterEntityPos.x > loungeThresholdRange
-                    && !(PlayState.player.pos.x - monsterEntityPos.x < -loungeThresholdRange)) {
-                loungeCooldown();
-                System.out.println("hej");
+            monsterWithinRangeY = true;
+        } else {
+            monsterWithinRangeY = false;
+        }
 
-                return true;
-
-            } else if (PlayState.player.pos.x - monsterEntityPos.x >= -loungeThresholdRange
-                    && !(PlayState.player.pos.x - monsterEntityPos.x <= loungeThresholdRange)) {
-                loungeCooldown();
-                return true;
-            } else if (PlayState.player.pos.y - monsterEntityPos.y >= loungeThresholdRange
-                    && !(PlayState.player.pos.y - monsterEntityPos.y <= -loungeThresholdRange)) {
-                loungeCooldown();
-                return true;
-
-            } else if (PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange
-                    && !(PlayState.player.pos.y - monsterEntityPos.y <= loungeThresholdRange)) {
-                loungeCooldown();
-                return true;
-            }
-            return false;
+        if (loungeActive && monsterWithinRangeX && monsterWithinRangeY) {
+            loungeCooldown();
+            return true;
         }
         return false;
     }
@@ -62,12 +60,10 @@ public class Lounge extends MonsterMoveManager {
 
         if (cooldownCounter.getReset() < cooldownCounter.getCooldown() - 2 && !loungeActive) {
             cooldownCounter.update();
-            System.out.println(cooldownCounter.getReset() + " " + cooldownCounter.getCooldown());
         } else {
             if (loungeDuration != loungeCounter) {
                 loungeCounter++;
                 loungeActive = true;
-                System.out.println(loungeCounter);
             } else {
                 loungeCounter = 0;
                 cooldownCounter.update();

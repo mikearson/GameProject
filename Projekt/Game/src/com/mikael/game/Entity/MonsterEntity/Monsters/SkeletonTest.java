@@ -14,7 +14,7 @@ public class SkeletonTest extends MonsterEntity implements Monster { // implemen
     int animationWait = 0;
 
     private int startingHitPoints;
-    private int loungeThresholdRange = 80;
+    private int loungeThresholdRange = 150;
     private int loungeCooldown = 300;
     public int loungeDamage = 30;
     private int loungeDuration = 50;
