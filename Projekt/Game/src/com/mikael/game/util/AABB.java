@@ -9,7 +9,7 @@ public class AABB {
     private float h;
     private float r;
     private int size;
-   // private Entity e;
+    // private Entity e;
 
     public AABB(Vector2f pos, int w, int h) {
         this.pos = pos;
@@ -19,9 +19,17 @@ public class AABB {
         size = Math.max(w, h);
     }
 
-    public Vector2f getPos() { return pos;}
-    public float getWidth() { return w;}
-    public float getHeight() {return h;}
+    public Vector2f getPos() {
+        return pos;
+    }
+
+    public float getWidth() {
+        return w;
+    }
+
+    public float getHeight() {
+        return h;
+    }
 
     public float getXOffset() {
         return xOffset;
@@ -42,7 +50,25 @@ public class AABB {
     public void setWidth(int width) {
         w = width;
     }
+
     public void setHeight(int height) {
         h = height;
     }
+
+    public Vector2f getTopLeft() {
+        return pos;
+    }
+
+    public Vector2f getTopRightx() {
+        return new Vector2f(pos.x + w, pos.y);
+    }
+
+    public Vector2f getBottomLeft() {
+        return new Vector2f(pos.x, pos.y + h);
+    }
+
+    public Vector2f getBottomRight() {
+        return new Vector2f(pos.x + w, pos.y + h);
+    }
+
 }

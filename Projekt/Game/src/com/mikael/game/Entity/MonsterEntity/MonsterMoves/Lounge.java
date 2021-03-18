@@ -30,19 +30,15 @@ public class Lounge extends MonsterMoveManager {
         }
 
         if ((PlayState.player.pos.x - monsterEntityPos.x <= loungeThresholdRange
-                && !(PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange))
-                || (PlayState.player.pos.x - monsterEntityPos.x >= -loungeThresholdRange
-                        && !(PlayState.player.pos.x - monsterEntityPos.x >= loungeThresholdRange))) {
+                && PlayState.player.pos.x - monsterEntityPos.x >= -loungeThresholdRange)) {
 
             monsterWithinRangeX = true;
         } else {
             monsterWithinRangeX = false;
         }
 
-        if ((PlayState.player.pos.y - monsterEntityPos.y <= loungeThresholdRange
-                && !(PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange))
-                || (PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange
-                        && !(PlayState.player.pos.y - monsterEntityPos.y >= loungeThresholdRange))) {
+        if (PlayState.player.pos.y - monsterEntityPos.y <= loungeThresholdRange
+                && PlayState.player.pos.y - monsterEntityPos.y >= -loungeThresholdRange) {
 
             monsterWithinRangeY = true;
         } else {

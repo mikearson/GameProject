@@ -16,13 +16,12 @@ public abstract class Entity {
     // protected final int LEFT = 1;
     // protected final int DOWN = 2;
     // protected final int UP = 3;
-    public Direction direction = Direction.RIGHT;
-    protected Direction currentAnimation;
+    public Direction currentAnimation;
 
     protected Animation animation;
     protected Sprite sprite;
     public Vector2f pos;
-    protected int size;
+    public int size;
 
     protected boolean right = false;
     protected boolean left = false;
