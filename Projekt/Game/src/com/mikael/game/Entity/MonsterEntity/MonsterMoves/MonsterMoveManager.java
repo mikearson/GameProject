@@ -24,10 +24,10 @@ public abstract class MonsterMoveManager {
         cooldownCounter = new CooldownCounter(cooldown);
     }
 
-    public Boolean didItHit(Entity attackingMonster) {
+    public Boolean didItHit(Entity m) {
 
-        Rectangle2D aM = new Rectangle2D.Float(attackingMonster.pos.x, attackingMonster.pos.y, attackingMonster.size,
-                attackingMonster.size), p = new Rectangle2D.Float(player.pos.x, player.pos.y, player.size, player.size);
+        Rectangle2D aM = new Rectangle2D.Float(m.pos.x, m.pos.y, m.size,
+                m.size), p = new Rectangle2D.Float(player.pos.x, player.pos.y, player.size, player.size);
 
         return p.intersects(aM);
 
